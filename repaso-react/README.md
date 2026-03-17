@@ -11,10 +11,14 @@ Desarrollar una pequeña aplicación web utilizando React y Vite que permita a l
 - Crear un nuevo proyecto de React utilizando Vite.
 - Limpiar el proyecto para tener una base mínima (borrar el contenido por defecto que no necesiten).
 
+
 ### 2. Estructura de Componentes
 Crear al menos los siguientes componentes funcionales, dados como ejemplos:
 
 - **App.jsx**: Componente principal que manejará la lógica de la aplicación y la gestión del estado global (o al menos el estado de los datos principales).
+- **Header.jsx**: Componente de encabezado que incluya una barra de navegación.
+	- Implementar un ruteador (por ejemplo, React Router) para navegar entre al menos dos secciones diferentes de la aplicación.
+	- Ejemplo de secciones: "Lista de Items" y "Acerca de".
 - **(opcional) Buscador.jsx**: Un componente que contendrá un campo de texto (`<input>`) para filtrar o buscar información y un botón de acción (opcional).
 - **ListaItems.jsx**: Un componente que recibirá una lista de elementos (mediante props) y se encargará de renderizarlos.
 - **ItemDetalle.jsx (opcional, pero recomendado)**: Un componente que muestre los detalles individuales de cada elemento de la lista.
