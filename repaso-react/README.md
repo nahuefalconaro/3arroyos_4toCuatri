@@ -60,9 +60,12 @@ Opción para PROs!!!
 ### 6. Presentación
 - Dar un estilo básico a la aplicación para que sea visualmente presentable utilizando CSS plano, pueden utilizar Tailwind si ya lo conocen.
 
+
 ## Entregables
 - El repo con el código fuente del proyecto React/Vite.
 - La aplicación debe ser funcional y mostrar la lista de datos consumidos y permitir el filtrado de estos (en caso de implementar este último).
+
+**Fecha de entrega:** 23/03 (aunque sea feriado y no tengamos clases, la entrega se mantiene para ese día).
 
 ---
 
