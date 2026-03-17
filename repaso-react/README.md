@@ -26,6 +26,19 @@ Puedes utilizar otros componentes, estos son de modo ejemplificativo.
 - En el componente correspondiente, utilizar el Hook `useEffect` para realizar la llamada a la API solo al montar el componente.
 - Opcional y para investigar ⇒ Manejar el estado de la carga de datos (por ejemplo, mostrar un mensaje de "Cargando..." mientras se obtienen los datos).
 
+
+#### Ejemplos de APIs públicas para practicar
+
+Puedes elegir cualquier API pública para consumir datos. Aquí algunos ejemplos útiles:
+
+- [JSONPlaceholder](https://jsonplaceholder.typicode.com/) — Posts, usuarios, comentarios, etc.
+- [PokeAPI](https://pokeapi.co/) — Información de Pokémon.
+- [Rick and Morty API](https://rickandmortyapi.com/) — Personajes, episodios, etc.
+- [OpenWeatherMap](https://openweathermap.org/api) — Datos meteorológicos (requiere registro).
+
+Consulta más opciones o ejemplos en este enlace:
+[Búsqueda de APIs públicas en Perplexity](https://www.perplexity.ai/search/fetch-https-jsonplaceholder-ty-OQQkosB7Q52BHIg2yFC82Q#1)
+
 ### 4. Gestión del Estado
 Utilizar el Hook `useState` para manejar al menos los siguientes estados dentro de la aplicación:
 
