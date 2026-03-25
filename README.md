@@ -179,7 +179,20 @@ Carpeta en proyecto
 # Frontend
 ### React
 
-- Hooks?
+// fetch().then().then().catch() es una forma de hacer peticiones HTTP en JavaScript utilizando promesas. Es una alternativa a otras bibliotecas como Axios o jQuery para realizar solicitudes a servidores y manejar las respuestas de manera asíncrona.
+// fetch trae datos, el primer then trabaja con los datos del fetch, una vez que termina, el fetch siguiente trabaja con los datos del then anterior.
+
+
+useEffect(() => {// hook que se ejecuta al montar el componente
+
+    fetch('https://rickandmortyapi.com/api/character',{
+      method: 'GET'//verbo de la peticion - GET, POST, DELETE, PUT
+    })// hace llamada a la url dentro
+    .then(response => response.json())// convierte lo que recibe de la llamda a esa url y lo transforma en json
+    .then(data =>console.log(data))// imprime en consola la respuesta de arriba)// imprime en consola la respuesta de arriba
+    .catch(error => console.error(error));// si hay error en cualquier linea de arriba, imprime el error
+
+}, []);
 
 
 # Backend
@@ -187,3 +200,18 @@ Carpeta en proyecto
 - Controlador: Presentador de endpoints. Cara visible de nuestro backend.
 - Servicio: Logica de negocio, todos los metodos, ifs, demas cosas.
 - Repositorio: Encargado de obtener informacion de la BD
+
+### Documentacion
+
+https://docs.nestjs.com/first-steps
+
+Instalacion de nestjs:
+npm install -g @nestjs/cli
+
+Creacion de proyecto con nestjs:
+nest new <NombreProyecto>-> nos va a pedir seleccionar package manager, elegir NPM.
+
+
+#### Archivos
+
+Main: Vamos a tener un unico main por aplicacion. Punto de arranque de la aplicacion. Donde se agrega la configuracion.
