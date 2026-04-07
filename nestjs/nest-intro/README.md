@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
+  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="100" alt="Nest Logo" /></a>
 </p>
 
 
@@ -16,7 +16,7 @@ Hoy continuamos con el desarrollo de un servidor backend utilizando **NestJS**, 
 Durante la clase creamos el siguiente diagrama para visualizar la arquitectura:
 
 ---
-![Diagrama de arquitectura NestJS](src/documents/images/image.png)
+![Diagrama de arquitectura NestJS](src/documents/images/client-server.png)
 ![fuente](https://excalidraw.com/#json=Wc-fSTDfRUPFMbKWnGBG-,rnh0HQU4rnShnTU3DCd-Yw)
 
 ## Métodos del protocolo HTTP y CRUD
@@ -106,5 +106,108 @@ $ npm run start:dev
 # production mode
 $ npm run start:prod
 ```
+
+# Conexión con base de datos a través de ORM
+
+En esta clase avanzamos en la arquitectura de nuestro backend, migrando de un array en memoria a una base de datos real utilizando un **ORM (Object-Relational Mapping)**. Utilizamos **TypeORM** junto a **MySQL** y profundizamos en conceptos clave de NestJS y la programación orientada a servicios.
+
+---
+
+## 1. Inyección de dependencias, @Injectable y Singleton en NestJS
+
+- **@Injectable**: Decorador que marca una clase como inyectable, permitiendo que NestJS gestione su ciclo de vida y la provea donde sea requerida.
+- **Inyección de dependencias**: Patrón que permite desacoplar componentes, facilitando la reutilización y el testing. Los servicios y repositorios se inyectan en los controladores o en otros servicios.
+- **Singleton**: Por defecto, los providers en NestJS son singletons, es decir, se crea una única instancia para toda la aplicación.
+
+Ejemplo:
+```typescript
+@Injectable()
+export class UsersService {
+  // ...
+}
+```
+
+---
+
+## 2. Integración de TypeORM y MySQL
+
+Migramos la gestión de usuarios a una base de datos MySQL usando TypeORM. Ahora la entidad `User` es una tabla y usamos el repositorio de TypeORM para acceder y modificar los datos.
+
+- Se creó la entidad `User`.
+- Se configuró la conexión a MySQL en el módulo principal.
+- Se reemplazó el array por el repositorio de TypeORM.
+
+### Diagrama de arquitectura con ORM
+
+![Diagrama con ORM de arquitectura Web](src/documents/images/orm.png)
+
+---
+
+## 3. Documentación oficial y recursos
+
+- [NestJS: Database](https://docs.nestjs.com/techniques/database)
+- [TypeORM: Repository Methods](https://typeorm.io/docs/data-source/null-and-undefined-handling#repository-methods)
+
+---
+
+## 4. Métodos del repositorio y asincronía
+
+Los métodos del repositorio de TypeORM (ver [#sym:Repository](#sym:Repository)) son **asíncronos** y devuelven una **Promise**. Por eso, usamos `async/await` para esperar los resultados de las operaciones sobre la base de datos.
+
+Ejemplo:
+```typescript
+async findAll(): Promise<User[]> {
+  return await this.userRepository.find();
+}
+```
+- **Promise**: Representa un valor que estará disponible en el futuro.
+- **async/await**: Permite escribir código asíncrono de forma secuencial y legible.
+
+---
+
+## 5. Utilización de Perplexity para búsquedas con IA
+
+Durante la clase utilizamos [Perplexity](https://www.perplexity.ai/) para realizar búsquedas y consultas rápidas con inteligencia artificial, facilitando la investigación y el aprendizaje de nuevas tecnologías.
+
+---
+
+## 6. Ejemplos prácticos para PUT y DELETE usando TypeORM
+
+A continuación, ejemplos para completar los métodos `PUT` y `DELETE` en el controller usando TypeORM:
+
+### DELETE
+```typescript
+@Delete(':id')
+async remove(@Param('id') id: number): Promise<void> {
+  const result = await this.userRepository.delete(id);
+  if (result.affected === 0) {
+    throw new NotFoundException(`Usuario con id ${id} no encontrado`);
+  }
+}
+```
+
+### PUT
+```typescript
+@Put(':id')
+async update(@Param('id') id: number, @Body() updateUser: User): Promise<User> {
+  await this.userRepository.update(id, updateUser);
+  const updatedUser = await this.userRepository.findOneBy({ id });
+  if (!updatedUser) {
+    throw new NotFoundException(`Usuario con id ${id} no encontrado`);
+  }
+  return updatedUser;
+}
+```
+> **Tip:** Validar siempre que el usuario exista antes de actualizar o eliminar, y manejar los posibles errores usando excepciones de NestJS como `NotFoundException`.
+
+---
+
+## 7. Resumen de la clase
+
+- Migramos de un array en memoria a una base de datos real usando ORM.
+- Aprendimos sobre inyección de dependencias, @Injectable y el patrón singleton en NestJS.
+- Usamos métodos asíncronos y el patrón async/await para interactuar con la base de datos.
+- Consultamos documentación oficial y utilizamos IA para investigar.
+- Practicamos la implementación de métodos PUT y DELETE con TypeORM.
 
 
