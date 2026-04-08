@@ -1,5 +1,6 @@
-import { Controller, Delete, Get, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Post, Put } from '@nestjs/common';
 import { UsuarioService } from './app.service';
+import type { User } from './entities/user.entity';
 
 // http://localhost:3000/usuarios
 
@@ -23,22 +24,22 @@ export class UsuarioController {
   }
 
   @Get()//obtener
-  getHelloController(): string {
+  getHelloController(): Promise<User[]> {
     return this.usuarioService.getHelloService();
   }
 
   @Post()//agregar
-  postHelloController(): string {
-    return this.usuarioService.postHelloService();
+  postHelloController(@Body() newUser: User): Promise<string> {
+    return this.usuarioService.postHelloService(newUser);
   }
 
   @Delete()//eliminar
-  deleteHelloController(): string {
-    return this.usuarioService.deleteHelloService();
+  deleteHelloController(idUser: number): string {
+    return this.usuarioService.deleteHelloService(idUser);
   }
 
   @Put()//modificar
-  putHelloController(): string {
-    return this.usuarioService.putHelloService();
+  putHelloController(updateUser: User): string {
+    return this.usuarioService.putHelloService(updateUser);
   }
 }
