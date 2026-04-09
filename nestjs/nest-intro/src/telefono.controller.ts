@@ -13,6 +13,12 @@ import { UsuarioService } from './app.service';
 // }, []);
 
 
+// Controller 1(cada decorador, creacion de metodos, buenas practicas, dto, validaciones)
+// Controller 2(pipes, middlewares, guards, interceptors, filters) -> Opcionales)
+// module
+// comandos nest
+
+// luego de la clase de controller, ejercicio de practica completo.
 @Controller('/telefonos')
 export class TelefonoController {
   constructor() {
