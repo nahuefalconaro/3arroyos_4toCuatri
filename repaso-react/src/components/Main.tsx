@@ -5,9 +5,10 @@ import './Main.css'
 interface User {
   id: number,
   name: string,
-  username: string,
-  email: string,
-  website: string
+  age: number,
+  username?: string,
+  email?: string,
+  website?: string
 }
 
 function Main() {
@@ -16,7 +17,7 @@ function Main() {
   useEffect(() => {
     
     function getUsers() {
-      fetch("https://jsonplaceholder.typicode.com/users")
+      fetch("http://localhost:3000/usuarios")
         .then(res => res.json())
         .then(data => {
           console.log(data)
@@ -39,7 +40,7 @@ function Main() {
   return (
     <main className="main">
       {(users.length > 0) && users.map(user => (
-        <Card key={user.id} name={user.name} website={user.website}/>
+        <Card key={user.id} name={user.name} age={user.age}/>
       ))}
     </main>
   )

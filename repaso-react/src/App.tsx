@@ -1,5 +1,6 @@
 import Header from './components/Header'
 import Main from './components/Main'
+import AddUser from './components/AddUser'
 import './App.css'
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
     <>
       <Header />
       <Main/>
+      <AddUser/>
     </>
   )
 }
