@@ -71,3 +71,62 @@ Opción para PROs!!!
 
 Para registrar el grupo y el repositorio utilizar esta planilla:
 [Registro de grupos y repositorios](https://docs.google.com/spreadsheets/d/1jdb7hEwkB8bZTKqvvbP8LKOkBqLj57Mey_ehLzxX01s/edit?usp=sharing)
+
+---
+
+## Clase: Conexión React + NestJS — Consumo de API propia
+
+### Objetivo
+
+Conectar la aplicación de React (frontend) con un servidor desarrollado en NestJS (backend), reemplazando el consumo de una API pública externa por una API propia.
+
+### Contenido visto
+
+#### 1. Configuración de CORS en NestJS
+- Se agregó la configuración de **CORS** en el archivo `nestjs/nest-intro/src/main.ts` para permitir peticiones desde el origen del frontend (`http://localhost:5173`).
+- Esto es necesario porque el navegador bloquea las peticiones cross-origin por defecto.
+
+```ts
+app.enableCors({
+  origin: ['http://localhost:5173'],
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+  allowedHeaders: ['Content-Type', 'Authorization'],
+});
+```
+
+#### 2. Nuevo componente `AddUser.tsx`
+- Se creó el componente **AddUser** que implementa un formulario controlado con `useState`.
+- El formulario permite ingresar **nombre** y **edad** de un usuario.
+- Al enviar el formulario, se realiza una petición **POST** al endpoint `http://localhost:3000/usuarios` del servidor NestJS.
+- Se utilizó `fetch` con método POST, headers `Content-Type: application/json` y el body serializado como JSON.
+
+#### 3. Cambio de fuente de datos: API pública → API propia
+- En el componente **Main.tsx**, se reemplazó la URL de la API pública (`jsonplaceholder.typicode.com/users`) por la URL del servidor local (`http://localhost:3000/usuarios`).
+- Se adaptó la interfaz `User` para reflejar la estructura de datos que devuelve nuestro backend (`id`, `name`, `age`).
+- Los campos `username`, `email` y `website` se marcaron como opcionales (`?`) para mantener compatibilidad, esto indica que los campos son opcionales.
+
+#### 4. Actualización del componente `Card.tsx`
+- Se modificó la interfaz `CardProps` para recibir `age` en lugar de `website`.
+- La tarjeta ahora muestra la edad del usuario en lugar de su sitio web.
+
+### Conceptos trabajados
+
+- **CORS**: Configuración del backend para aceptar peticiones desde el frontend.
+- **Fetch API (POST)**: Envío de datos a un servidor mediante formularios controlados.
+- **useState con formularios**: Manejo de inputs controlados para nombre y edad.
+- **Integración frontend-backend**: Comunicación completa entre la app React y el servidor NestJS.
+
+### Requisitos para probar
+
+1. Levantar el servidor NestJS:
+   ```bash
+   cd nestjs/nest-intro
+   npm run start:dev
+   ```
+2. Levantar la app de React:
+   ```bash
+   cd repaso-react
+   npm run dev
+   ```
+3. El formulario **AddUser** permitirá crear usuarios y el componente **Main** mostrará la lista obtenida del backend local.
