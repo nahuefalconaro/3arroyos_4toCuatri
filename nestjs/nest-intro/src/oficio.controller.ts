@@ -75,15 +75,6 @@ export class OficioController {
     }
 
 
-/*
-{
-id: 1,
-nombre: "panadero",
-edad: 30
-}
-*/  
-
-
     @Post()// http://localhost:3000/oficios
     postOficios(@Body() oficio: OficioDTO): String {
         return "Agregando oficio" + oficio.nombre;
@@ -109,3 +100,8 @@ edad: 30
         return "Modificando oficio con ID: " + id;
     }
 }
+
+
+// service clase
+// module
+// comando para crear recursos
