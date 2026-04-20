@@ -130,3 +130,4 @@ app.enableCors({
    npm run dev
    ```
 3. El formulario **AddUser** permitirá crear usuarios y el componente **Main** mostrará la lista obtenida del backend local.
+
