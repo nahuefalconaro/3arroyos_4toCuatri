@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Post, Put } from '@nestjs/common';
 import { UsuarioService } from './app.service';
-import type { User } from './entities/user.entity';
+import type { User } from './user/entities/user.entity';
 
 // http://localhost:3000/usuarios
 
