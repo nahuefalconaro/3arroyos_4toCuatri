@@ -1,4 +1,4 @@
-import { useState, FormEvent } from 'react'
+import { useState, type FormEvent } from 'react'
 import './App.css'
 
 function App() {
@@ -66,6 +66,7 @@ function App() {
           {loading ? 'Enviando...' : 'Iniciar sesión'}
         </button>
       </form>
+      {/* Esto deberia eliminarse, es solo para debug */}
       {message && <p style={{ marginTop: 12 }}>{message}</p>}
       {token && (
         <div style={{ marginTop: 12 }}>
